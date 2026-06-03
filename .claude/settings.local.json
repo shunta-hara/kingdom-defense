@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp -r /c/Users/shunt/Documents/develop/kingdom-defense-temp/. /c/Users/shunt/Documents/develop/kingdom-defense/)"
+    ]
+  }
+}
