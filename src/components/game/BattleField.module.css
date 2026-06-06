@@ -1,0 +1,172 @@
+/* ============================================================
+   BattleField.module.css — Sprint 4: Unit Display + Animations
+   ============================================================ */
+
+/* --- Keyframes --- */
+
+@keyframes flash {
+  0%   { filter: brightness(1) saturate(1); background-color: rgba(231, 76, 60, 0.1); }
+  25%  { filter: brightness(2) saturate(2); background-color: rgba(231, 76, 60, 0.7); }
+  50%  { filter: brightness(1) saturate(1); background-color: rgba(231, 76, 60, 0.1); }
+  75%  { filter: brightness(2) saturate(2); background-color: rgba(231, 76, 60, 0.7); }
+  100% { filter: brightness(1) saturate(1); background-color: rgba(231, 76, 60, 0.1); }
+}
+
+/* --- Enemy Container (the grid area) --- */
+
+.enemyContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-content: flex-start;
+}
+
+/* --- Individual Enemy Card --- */
+
+.enemy {
+  background: rgba(231, 76, 60, 0.1);
+  border: 1px solid rgba(231, 76, 60, 0.3);
+  border-radius: 6px;
+  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  min-width: 44px;
+}
+
+/* --- Hit Flash (applied for 300ms on damage) --- */
+
+.hitFlash {
+  animation: flash 0.3s ease-in-out;
+}
+
+/* --- Enemy Emoji (size varies by wave tier via inline style) --- */
+
+.enemyEmoji {
+  line-height: 1;
+  transition: font-size 0.3s ease;
+}
+
+/* --- HP Bar --- */
+
+.hpBar {
+  width: 36px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.hpBarFill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+/* ============================================================
+   Unit Display — Sprint 4
+   ============================================================ */
+
+@keyframes unitAttack {
+  0%   { transform: scale(1)    translateX(0); }
+  30%  { transform: scale(1.35) translateX(6px); }
+  60%  { transform: scale(0.9)  translateX(-3px); }
+  100% { transform: scale(1)    translateX(0); }
+}
+
+/* Outer container: left side of battle area */
+.unitDisplayArea {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px 8px;
+  background: rgba(30, 60, 30, 0.35);
+  border: 1px solid rgba(46, 204, 113, 0.25);
+  border-radius: 8px;
+  min-width: 80px;
+  max-width: 120px;
+  align-self: flex-start;
+}
+
+.unitDisplayEmpty {
+  font-size: 10px;
+  color: #666;
+  padding: 4px 6px;
+  text-align: center;
+}
+
+.unitDisplayLabel {
+  font-size: 10px;
+  color: #888;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+/* Individual icon grid (≤8 units) */
+.unitIconGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  justify-content: center;
+}
+
+.unitIcon {
+  font-size: 18px;
+  line-height: 1;
+  cursor: default;
+  display: inline-block;
+}
+
+/* Summary list (>8 units) */
+.unitSummaryList {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.unitSummaryItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: #ccc;
+}
+
+.unitSummaryEmoji {
+  font-size: 14px;
+  line-height: 1;
+  display: inline-block;
+}
+
+.unitSummaryText {
+  white-space: nowrap;
+}
+
+/* Attack animation — applied to icon span or summary item */
+.unitAttack {
+  animation: unitAttack 0.3s ease-in-out;
+}
+
+/* --- Wave Tier color overrides (applied on .enemy) --- */
+
+.tierNormal {
+  border-color: rgba(46, 204, 113, 0.4);
+  background: rgba(46, 204, 113, 0.08);
+}
+
+.tierWarning {
+  border-color: rgba(241, 196, 15, 0.5);
+  background: rgba(241, 196, 15, 0.1);
+}
+
+.tierDanger {
+  border-color: rgba(230, 126, 34, 0.5);
+  background: rgba(230, 126, 34, 0.1);
+}
+
+.tierBoss {
+  border-color: rgba(231, 76, 60, 0.7);
+  background: rgba(231, 76, 60, 0.15);
+  box-shadow: 0 0 6px rgba(231, 76, 60, 0.3);
+}
