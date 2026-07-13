@@ -1,4 +1,4 @@
-const { execSync } = require('child_process');
+import { execSync } from 'child_process';
 try {
   console.log('\n[テスト] 実行中...');
   execSync('npm run test 2>&1', { stdio: 'inherit', shell: true });
